@@ -27,11 +27,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import ExportPDFButton from "@/components/ExportPDFButton"
-
-// design-first, single-file portfolio with premium visuals + print export
-// fixed: stray CSS after </style> caused "Missing semicolon"; cleaned and tightened StyleBlock
-// includes lightweight self-tests in dev to catch regressions
 
 const projects = [
   {
@@ -39,7 +34,7 @@ const projects = [
     description:
       "Интерактивный движок визуализации алгоритмов (Fenwick, Segment Tree), шаги, подсветка кода, контроль скорости.",
     tags: ["React", "TypeScript", "React‑Konva", "Redux Toolkit", "Vite"],
-    cover: "../public/images/Screenshot_20250924_131731.png",
+    cover: "./assets/images/Screenshot_20250924_131731.png",
     links: {
       demo: "https://github.com/goringich/algohack",
       repo: "https://github.com/goringich/algohack"
@@ -50,7 +45,7 @@ const projects = [
     description:
       "Система мониторинга сети микроконтроллеров: регистрация устройств, телеметрия, топология, WebSocket/gRPC.",
     tags: ["React", "TypeScript", "Redux", "React Query", "PixiJS"],
-    cover: "../public/images/9c7cf859-a67a-4691-9cbd-a0467a8f8991.jpeg",
+    cover: "./assets/images/9c7cf859-a67a-4691-9cbd-a0467a8f8991.jpeg",
     links: {
       demo: "https://example.com/nms",
       repo: "https://github.com/goringich/yadronymarkwork"
@@ -61,7 +56,7 @@ const projects = [
   description:
     "Веб-сервис для сотрудников, позволяющий находить партнёров для совместного обеда. Реализованы формы, маршрутизация, работа с состоянием и анимации.",
   tags: ["React", "TypeScript", "Redux Toolkit", "React Router", "UI/UX"],
-  cover: "../public/images/main page.jpg",
+  cover: "./assets/images/main page.jpg",
   links: {
     repo: "https://github.com/goringich/tbank-project"
   }
@@ -219,7 +214,7 @@ function NavBar() {
             {/*<ExportPDFButton /> */}
             <Button asChild size="l" className="ml-2">
               <a
-                href="../public/images/screen.pdf"
+                href="./assets/images/screen.pdf"
                 download
                 className="flex items-center gap-2"
               >
@@ -252,10 +247,7 @@ function SectionHeader({ icon: Icon, title, subtitle }: { icon: any; title: stri
 
 function ProjectCard({ p, idx }: { p: (typeof projects)[number]; idx: number }) {
   return (
-    <motion.a
-      href={p.links.demo || p.links.repo}
-      target="_blank"
-      rel="noreferrer"
+    <motion.div
       className="group relative block"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -287,7 +279,7 @@ function ProjectCard({ p, idx }: { p: (typeof projects)[number]; idx: number }) 
           </div>
         </div>
       </div>
-    </motion.a>
+    </motion.div>
   );
 }
 
@@ -303,16 +295,45 @@ function Bullet({ children }: { children: React.ReactNode }) {
 
 function ContactForm() {
   return (
-    <form
-      className="grid gap-4"
-      onSubmit={(e) => {
-        e.preventDefault();
-        const data = new FormData(e.currentTarget as HTMLFormElement);
-        const payload = Object.fromEntries(data.entries());
-        console.log("contact form:", payload);
-        alert("Thanks! I will get back to you shortly.");
-      }}
-    >
+<form
+  className="grid gap-4"
+  onSubmit={async (e) => {
+    e.preventDefault()
+    const form = e.currentTarget as HTMLFormElement
+    const data = new FormData(form)
+    const payload = Object.fromEntries(data.entries())
+
+    // honeypot field present in markup:
+    // <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
+
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null
+    if (btn) btn.disabled = true
+
+    try {
+      const resp = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      let json: any = null
+      const text = await resp.text()
+      try {
+        json = JSON.parse(text)
+      } catch {
+        throw new Error(`Non-JSON response: ${text}`)
+      }
+
+      if (!resp.ok || !json.ok) throw new Error(json?.error || 'Send failed')
+      alert('Спасибо! Сообщение отправлено.')
+      form.reset()
+    } catch (err) {
+      console.error(err)
+      alert('Не удалось отправить. Попробуйте позже.')
+    } finally {
+      if (btn) btn.disabled = false
+    }
+  }}
+>
       <div className="grid md:grid-cols-2 gap-4">
         <Input name="name" placeholder="Your name" required />
         <Input name="email" placeholder="Email" type="email" required />
@@ -375,7 +396,7 @@ function Hero() {
             </a>
           </Button>
           <Button asChild variant="secondary" className="btn-glass">
-            <a href="/cv.pdf" download>
+            <a href="./assets/images/screen.pdf" download>
               <Download className="h-4 w-4 mr-2" /> CV
             </a>
           </Button>
