@@ -47,7 +47,7 @@ export default function ExportPDFButton() {
       if (i < sections.length - 1) pdf.addPage()
     }
 
-    pdf.save("portfolio.pdf")
+    pdf.save("screen.pdf")
   }
 
   return (

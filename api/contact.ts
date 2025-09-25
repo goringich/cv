@@ -26,13 +26,24 @@ function rateLimited(ip: string) {
   if (rec.count > RATE_LIMIT_PER_MIN) return true
   return false
 }
+const ALLOWED = (process.env.ALLOWED_ORIGINS || "")
+  .split(",")
+  .map(s => s.trim())
+  .filter(Boolean);
 
 function isAllowedOrigin(origin?: string) {
-  if (!origin || ALLOWED_ORIGINS.length === 0) return true
+  if (!origin) return true; // SSR/серверные вызовы без Origin
   try {
-    const o = new URL(origin)
-    return ALLOWED_ORIGINS.includes(o.origin)
-  } catch { return false }
+    const o = new URL(origin).origin;
+
+    // разрешаем любые деплои под *.vercel.app
+    if (o.endsWith(".vercel.app")) return true;
+
+    // точные совпадения из ENV
+    return ALLOWED.includes(o);
+  } catch {
+    return false;
+  }
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
