@@ -28,6 +28,9 @@ declare module 'lucide-react' {
   export const MessageCircle: Icon;
   export const Globe2: Icon;
   export const FileDown: Icon;
+  export const User: Icon;
+  export const Target: Icon;
+  export const Sparkles: Icon;
   const _default: any;
   export default _default;
 }
