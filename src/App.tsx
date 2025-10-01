@@ -106,19 +106,17 @@ export default function Portfolio() {
           <AboutMe />
         </section>
 
-
         <section id="projects" className="mt-16 section">
           <SectionHeader icon={Briefcase} title="Projects" subtitle="Отобранные работы" />
           <Projects />
-
+        </section>
+        <section id="skills" className="mt-16 section">
           <SectionHeader
             icon={Boxes}
             title="Типы проектов"
             subtitle="Сводка по ключевым направлениям"
           />
           <ProjectTypesGrid />
-
-
         </section>
 
         <section id="skills" className="mt-16 section">
