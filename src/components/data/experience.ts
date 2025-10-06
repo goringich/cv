@@ -60,11 +60,11 @@ export const experience = [
     period: "9 месяцев",
     bullets: [
       "Разработка фронтенда топологии и статусов MCU: телеметрия, графы, таблицы, дашборды, алярмы",
-      "Транспорт: REST API/WebSocket; кеширование через React Query",
+      "Транспорт: REST API/WebSocket; кеширование через RTK Query",
       "Визуализация на PixiJS и d3.js, документация API (Confluence)"
     ],
     details: {
-      tech: ["React", "TypeScript", "PixiJS", "d3.js", "React Query", "WebSocket", "REST API"],
+      tech: ["React", "TypeScript", "PixiJS", "d3.js", "RTK Query", "WebSocket", "REST API"],
       role: "Фронтенд-разработчик: визуализация топологии и telemetry",
       challenges: [
         "Отрисовка динамических графов с обновлениями в реальном времени",

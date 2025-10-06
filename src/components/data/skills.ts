@@ -1,6 +1,6 @@
 export const skills = {
   core: [
-    "TypeScript", "React", "Vite", "Redux Toolkit", "React Router", "React Query", "Axios",
+    "TypeScript", "React", "Vite", "Redux Toolkit", "React Router", "RTK Query", "Axios",
     "HTML5", "CSS/SCSS", "WebSocket", "gRPC", "WASM (Emscripten)"
   ],
   ui: ["Tailwind", "SCSS Modules", "MUI", "Framer Motion", "react-hook-form", "react-table"],

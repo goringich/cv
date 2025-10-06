@@ -16,7 +16,7 @@ export const projects = [
     title: "Yadro & Neimark — NMS для MCU",
     description:
       "Система мониторинга сети микроконтроллеров: регистрация устройств, телеметрия, топология, WebSocket/gRPC.",
-    tags: ["React", "TypeScript", "Redux", "React Query", "PixiJS"],
+    tags: ["React", "TypeScript", "Redux", "RTK Query", "PixiJS"],
     cover: coverMcu,
     links: { demo: "https://example.com/nms", repo: "https://github.com/goringich/yadronymarkwork" }
   },
