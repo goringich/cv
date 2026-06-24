@@ -30,7 +30,6 @@ import { projects } from "./components/data/projects";
 import { ProjectCard } from "./components/ProjectCard";
 import "./App.scss";
 import { useCursorBackground } from "./hooks/useCursorBackground";
-import { AiOsPage } from "./ai-os/AiOsPage";
 
 
 
@@ -81,7 +80,7 @@ function useTailwindHealthcheck() {
   return ok;
 }
 
-function Portfolio() {
+export default function Portfolio() {
   const tailwindOk = useTailwindHealthcheck();
   return (
     <div id="home" className="min-h-screen text-base antialiased">
@@ -181,16 +180,6 @@ function Portfolio() {
   );
 }
 
-export default function App() {
-  const path = window.location.pathname.replace(/\/+$/, "") || "/";
-
-  if (path === "/ai-os") {
-    return <AiOsPage />;
-  }
-
-  return <Portfolio />;
-}
-
 
 function Background() {
   useCursorBackground();
@@ -204,4 +193,5 @@ function Background() {
     </>
   );
 }
+
 

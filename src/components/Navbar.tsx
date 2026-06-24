@@ -10,7 +10,6 @@ export function NavBar() {
         <div className="backdrop-blur-xl border border-white/10 rounded-full px-4 py-2 flex items-center justify-between bg-white/5 shadow-[0_0_1px_1px_rgba(255,255,255,.04)]">
           <a href="#home" className="text-sm font-medium tracking-wide opacity-90 ml-5">{contacts.name}</a>
           <div className="hidden sm:flex items-center gap-2">
-            <a href="/ai-os" className="nav-link text-cyan-200">AI OS</a>
             <a href="#projects" className="nav-link">Projects</a>
             <a href="#skills" className="nav-link">Skills</a>
             <a href="#experience" className="nav-link">Experience</a>

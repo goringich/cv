@@ -1,16 +1,14 @@
 // /api/contact.ts
-import type { IncomingMessage, ServerResponse } from 'node:http'
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 import 'dotenv/config' // локально подхватит .env.local
-
-type VercelRequest = IncomingMessage & { body?: unknown }
-type VercelResponse = ServerResponse & {
-  status(code: number): VercelResponse
-  json(payload: unknown): VercelResponse
-}
 
 // ---- config from env ----
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID!
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean)
 const RATE_LIMIT_PER_MIN = Number(process.env.RATE_LIMIT_PER_MIN || 8)
 
 // ---- simple in-memory limiter (per runtime) ----
