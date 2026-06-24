@@ -2,7 +2,7 @@ export const contacts = {
   name: "Igor Kim",
   role: "Frontend Developer (React/TypeScript)",
   city: "Nizniy Novgorod, RU",
-  email: "",
+  email: "actingsv@gmail.com",
   phone: "",
   github: "https://github.com/goringich",
   linkedin: "",

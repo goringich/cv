@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# Igor Kim — portfolio and AI OS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Public portfolio plus the first sellable surface for **AI OS**, a local-first implementation service for Linux developers.
 
-Currently, two official plugins are available:
+## Routes
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `/` — engineering portfolio;
+- `/ai-os` — Russian AI OS offer, pilot scope, acceptance criteria, public proof and contact actions.
 
-## React Compiler
+## AI OS pilot
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `49 900 ₽` for one Linux workstation and up to three active projects;
+- five working days;
+- `9 900 ₽` diagnostic, fully credited toward the pilot;
+- direct contact: [Telegram](https://t.me/a1gorithms) or `actingsv@gmail.com`;
+- no secrets, passwords or tokens in the initial request.
 
-## Expanding the ESLint configuration
+The product is an implementation and acceptance service, not a new model runtime and not a promise of unrestricted autonomy.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Full scope and intake contract: [`docs/ai-os-pilot.md`](docs/ai-os-pilot.md).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Verification
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run typecheck
+npm run lint
+npm run build
+npm audit --audit-level=low
+npm run qa:ai-os
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Browser acceptance covers desktop `1536×1024` and mobile `390×844`, direct `/ai-os` routing, horizontal overflow, error overlays, console errors and CTA targets.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Local development
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev -- --host 127.0.0.1 --port 4175
 ```
+
+Vercel rewrites `/ai-os` to the Vite entrypoint through `vercel.json`.
